@@ -8,7 +8,9 @@
   <!-- Primary Meta -->
   <meta name="description" content="Support Jeff Patterson, a pro se litigant in active federal civil rights litigation involving disability and age discrimination. Legal defense fund for court costs and basic survival needs.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://justice-for-jeff.tiiny.site">
+  
+  <!-- Canonical Link points to your GitHub URL -->
+  <link rel="canonical" href="https://jsp4234-prog.github.io/Justice-For-Jeff.github.io/">
   
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
@@ -17,7 +19,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Stand with Jeff Patterson | Federal Civil Rights & Disability Justice">
   <meta property="og:description" content="Supporting a pro se litigant in active federal civil rights litigation involving disability and age discrimination.">
-  <meta property="og:url" content="https://justice-for-jeff.tiiny.site">
+  <meta property="og:url" content="https://jsp4234-prog.github.io/Justice-For-Jeff.github.io/">
   <meta property="og:image" content="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1080&auto=format&fit=crop">
 
   <!-- Tailwind CSS -->
@@ -29,7 +31,20 @@
   <style>
     body { font-family: 'Open Sans', sans-serif; }
     h1, h2, h3 { font-family: 'Merriweather', serif; }
-    body.modal-open { overflow: hidden; }
+    /* Custom Scrollbar for Transcript */
+    .transcript-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+    .transcript-scroll::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+    .transcript-scroll::-webkit-scrollbar-thumb {
+      background: #888; 
+      border-radius: 4px;
+    }
+    .transcript-scroll::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
   </style>
 
   <script>
@@ -40,7 +55,6 @@
       if (isMobile) {
         event.preventDefault();
         // Attempt to open in Facebook App using the modal scheme
-        // This tries to open the specific profile link inside the FB app
         window.location.href = "fb://facewebmodal/f?href=https://www.facebook.com/jeff.patterson.1029";
         
         // Fallback: If app doesn't open within 500ms, redirect to the browser link
@@ -87,22 +101,71 @@
     This page summarizes the alleged events in <em>Patterson v. USPS</em>, involving claims under the Rehabilitation Act.
   </p>
 
-  <!-- EMBEDDED VIDEO PLAYER (Using Official Tiiny Host Method) -->
+  <!-- CUSTOM CLICK-TO-LOAD PLAYER -->
   <div class="my-8 mb-10 text-center bg-gray-900 rounded-lg shadow-lg p-4 sm:p-6">
     <h3 class="text-white text-lg font-bold mb-4">MUST WATCH: 7-Minute Case Summary</h3>
     
-    <!-- Responsive Video Container (16:9 Aspect Ratio) -->
-    <div class="relative w-full pb-[56.25%] h-0 rounded-lg overflow-hidden bg-black border border-gray-700 shadow-md">
-      <!-- Standard Iframe Code -->
-      <iframe 
-        class="absolute top-0 left-0 w-full h-full"
-        src="https://www.youtube.com/embed/-2hP1J_Si4Q" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
+    <!-- 
+      Wrapper div: 
+      Displays the cover image first. 
+      When clicked, it swaps in the OFFICIAL iframe code we know works.
+      UPDATED: Added '&playsinline=1' to help mobile one-click playback.
+    -->
+    <div class="relative w-full pb-[56.25%] h-0 rounded-lg overflow-hidden bg-black border border-gray-700 shadow-md group cursor-pointer"
+         onclick="this.innerHTML='<iframe class=\'absolute top-0 left-0 w-full h-full\' src=\'https://www.youtube.com/embed/-2hP1J_Si4Q?autoplay=1&playsinline=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen></iframe>'">
+      
+      <!-- Thumbnail Image -->
+      <img src="https://img.youtube.com/vi/-2hP1J_Si4Q/maxresdefault.jpg" 
+           alt="Tap to Load Video" 
+           class="absolute top-0 left-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-300">
+      
+      <!-- 
+        PLAY BUTTON OVERLAY
+        Positioned at bottom-4 right-4 (Bottom Right Corner)
+        to avoid covering the face in the center.
+      -->
+      <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 pointer-events-none z-10">
+        <div class="bg-red-600 group-hover:bg-red-700 text-white rounded-full p-3 sm:p-4 shadow-2xl transform group-hover:scale-110 transition duration-300 flex items-center justify-center border-2 border-white">
+          <svg class="w-6 h-6 sm:w-8 sm:h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Text Hint -->
+      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition duration-300 text-left pl-6 pb-6">
+        Tap to Play
+      </div>
     </div>
+    
+    <!-- TRANSCRIPT DROPDOWN -->
+    <details class="mt-4 text-left border-t border-gray-700 pt-4">
+      <summary class="cursor-pointer text-blue-300 hover:text-white text-sm font-semibold flex items-center justify-center">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        Read Full Video Transcript
+      </summary>
+      <div class="mt-4 p-4 bg-gray-800 rounded-lg text-gray-300 text-xs sm:text-sm leading-relaxed max-h-64 overflow-y-auto transcript-scroll">
+        <p class="font-bold text-white mb-2">00:00 - Introduction</p>
+        <p class="mb-3">Today we're gonna unpack the court filings in a fascinating case: Jeff Patterson versus the United States Postal Service.</p>
+        
+        <p class="font-bold text-white mb-2">00:15 - The Safety Net</p>
+        <p class="mb-3">You know, imagine your job is like walking a tightrope. You've got a signed agreement—that's your safety net.</p>
+
+        <p class="font-bold text-white mb-2">01:13 - The Contract (PS Form 2499)</p>
+        <p class="mb-3">On February 7th, 2022, they created this document... A hard cap of 9 hours a day, 5 days a week.</p>
+
+        <p class="font-bold text-white mb-2">02:15 - The Turning Point</p>
+        <p class="mb-3">January 14th, 2023. Patterson texts his supervisor... The supervisor's reply is a legal bombshell: "Sorry man... we're gonna have to mandate you to finish."</p>
+
+        <p class="font-bold text-white mb-2">03:36 - The "Trap"</p>
+        <p class="mb-3">Step 1: Management violates the contract... Step 2: The pain gets so bad he has to take a medically necessary day off... Step 3: Management disciplines him for that very absence.</p>
+
+        <p class="font-bold text-white mb-2">04:48 - The Contradiction</p>
+        <p class="mb-3">An investigator asked them: "Were you aware of any medical restrictions?" They swore under penalty of perjury: "No."</p>
+        
+        <p class="mb-3 italic">"What does that say about the real value of any workplace safety promise?"</p>
+      </div>
+    </details>
   </div>
 
   <h3 class="text-xl font-bold text-gray-900 mt-8 mb-3">Case Narrative</h3>
@@ -124,7 +187,7 @@
   </div>
 </section>
 
-<!-- DONATION SECTION -->
+<!-- DONATION SECTION (GoFundMe Prioritized) -->
 <section id="donate" class="mt-10 bg-slate-900 text-white rounded-xl shadow-xl p-8 text-center">
   <h3 class="text-2xl font-bold mb-4">Support the Legal Fund</h3>
   <div class="flex flex-col gap-3 max-w-sm mx-auto">
@@ -153,7 +216,7 @@
             Email Jeff
         </a>
         
-        <!-- Facebook Button with App-Open Logic -->
+        <!-- Facebook Button with Mobile App Logic -->
         <a href="https://www.facebook.com/jeff.patterson.1029?mibextid=ZbWKwL" 
            onclick="openFacebookLink(event)"
            target="_blank" rel="noopener noreferrer"
