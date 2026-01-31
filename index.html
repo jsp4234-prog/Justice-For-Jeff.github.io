@@ -13,15 +13,15 @@
   <!-- Mobile Browser Theme Color -->
   <meta name="theme-color" content="#0f172a">
   
-  <!-- Content Security Policy (Hardened & Tailwind Compatible) -->
+  <!-- Content Security Policy (Security Hardening) -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
                  img-src 'self' https: data:;
                  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-                 font-src 'self' https://fonts.gstatic.com data:;
+                 font-src https://fonts.gstatic.com;
                  script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;
-                 frame-src https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com;
-                 connect-src 'self' https:;
+                 frame-src https://www.youtube.com;
+                 connect-src 'self';
                  base-uri 'self';
                  form-action 'self';">
   
@@ -104,7 +104,7 @@
     
     <p class="text-lg md:text-xl text-gray-200 mb-6 font-light max-w-2xl mx-auto">Public Case Overview — Patterson v. USPS</p>
     
-    <p class="text-sm text-gray-300 mb-8 italic">
+    <p class="text-xs text-gray-400 mb-8 italic">
       <time datetime="2026-01-31">Last updated: January 31, 2026</time>
     </p>
 
@@ -128,13 +128,9 @@
 <div class="mb-14 text-center bg-gray-900 rounded-lg shadow-lg p-4 sm:p-6">
     <h3 class="text-white text-lg font-bold mb-4">Case Overview: 7-Minute Summary</h3>
     
-    <!-- Video Player Container (Click-to-Load + Keyboard Accessible + Focus Ring) -->
-    <div class="relative w-full pb-[56.25%] h-0 rounded-lg overflow-hidden bg-black border border-gray-700 shadow-md group cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-400/60"
-         role="button"
-         tabindex="0"
-         aria-label="Play the case overview video"
-         onclick="this.innerHTML='<iframe class=\'absolute top-0 left-0 w-full h-full\' src=\'https://www.youtube.com/embed/-2hP1J_Si4Q?autoplay=1&playsinline=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen loading=\'lazy\' referrerpolicy=\'no-referrer\'></iframe>'"
-         onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); this.click(); }">
+    <!-- Video Player Container -->
+    <div class="relative w-full pb-[56.25%] h-0 rounded-lg overflow-hidden bg-black border border-gray-700 shadow-md group cursor-pointer"
+         onclick="this.innerHTML='<iframe class=\'absolute top-0 left-0 w-full h-full\' src=\'https://www.youtube.com/embed/-2hP1J_Si4Q?autoplay=1&playsinline=1\' title=\'YouTube video player\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen></iframe>'">
       
       <!-- Thumbnail Image -->
       <img src="https://img.youtube.com/vi/-2hP1J_Si4Q/maxresdefault.jpg" 
@@ -235,16 +231,12 @@
 
   <div class="flex flex-col gap-3 max-w-sm mx-auto mb-8">
     <!-- GoFundMe (Primary) -->
-    <a href="https://gofund.me/413562e7c" 
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Open GoFundMe campaign in a new tab"
+    <a href="https://gofund.me/413562e7c" target="_blank" rel="noopener noreferrer"
        class="block w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg shadow-lg transition text-base">
       GoFundMe: Help Jeff Fight Federal Discrimination
     </a>
     <!-- Fundrazr (Secondary) -->
-    <a href="https://fnd.us/e2foRe?ref=sh_cEjEk3" 
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Open FundRazr campaign in a new tab"
+    <a href="https://fnd.us/e2foRe?ref=sh_cEjEk3" target="_blank" rel="noopener noreferrer"
        class="block w-full bg-transparent border-2 border-gray-500 hover:border-white hover:text-white text-gray-300 font-bold py-2 rounded-lg transition text-sm">
       FundRazr: Stand With Jeff Patterson
     </a>
@@ -291,7 +283,7 @@
 
     <!-- Verification Section -->
     <div class="max-w-xl mx-auto border-t border-gray-300 pt-6">
-        <p class="text-xs text-gray-600 mb-3">Case verification and docket activity are available through PACER Monitor:</p>
+        <p class="text-xs font-bold text-gray-500 uppercase mb-3">Verification: Public Court Record</p>
         <a href="https://www.pacermonitor.com/public/case/58465402/Jeff_Patterson_v_United_States_Postal_Service_et_al" 
            target="_blank" rel="noopener noreferrer" 
            class="inline-flex items-center justify-center bg-slate-700 hover:bg-slate-800 text-white font-bold py-2 px-6 rounded shadow text-xs transition">
