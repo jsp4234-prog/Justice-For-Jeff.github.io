@@ -13,6 +13,18 @@
   <!-- Mobile Browser Theme Color -->
   <meta name="theme-color" content="#0f172a">
   
+  <!-- Content Security Policy (Allows Local Images) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' https: data:;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                 font-src 'self' https://fonts.gstatic.com data:;
+                 script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;
+                 frame-src https://www.youtube.com https://youtube.com https://www.youtube-nocookie.com;
+                 connect-src 'self' https:;
+                 base-uri 'self';
+                 form-action 'self';">
+  
   <!-- Canonical Link -->
   <link rel="canonical" href="https://justice-for-jeff.github.io/Justice/">
   
@@ -55,16 +67,11 @@
       
       if (isMobile) {
         event.preventDefault();
-        
-        // 1. Try to open the Facebook App
         window.location.href = "fb://facewebmodal/f?href=https://www.facebook.com/jeff.patterson.1029";
-        
-        // 2. If app doesn't open in 1.5 seconds, go to browser
         setTimeout(function() {
           window.location.href = "https://www.facebook.com/jeff.patterson.1029?mibextid=ZbWKwL";
         }, 1500);
       }
-      // If desktop, standard behavior (new tab) applies
     }
   </script>
 </head>
@@ -85,6 +92,7 @@
   <div class="max-w-4xl mx-auto py-16 px-6 text-center relative z-10">
     <p class="text-blue-100 font-bold tracking-widest uppercase text-sm mb-4">Pending Federal Litigation</p>
     
+    <!-- Clickable Title to Reset URL -->
     <h1 class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-white drop-shadow-lg">
       <a href="./" class="hover:text-blue-200 transition duration-300" title="Click to refresh and copy clean link">Stand with Jeff Patterson</a>
     </h1>
@@ -105,28 +113,50 @@
 <main role="main" class="flex-grow">
 <div class="max-w-3xl mx-auto px-6 py-10">
 
-<!-- LEGAL DISCLAIMER -->
-<aside class="bg-slate-100 border-l-4 border-slate-600 p-5 mb-12 rounded text-sm text-slate-700 shadow-sm leading-relaxed">
-  <p class="font-bold mb-2 uppercase tracking-wide text-xs text-slate-500">Disclaimer</p>
-  <p>This webpage provides a public-facing summary of allegations and procedural history drawn from publicly filed court records and the plaintiff’s publicly stated allegations in <em>Patterson v. United States Postal Service</em>. The case is active and pending before the United States District Court. All claims are disputed and subject to judicial determination. Nothing on this page constitutes legal advice.</p>
-</aside>
-
-<!-- VIDEO SECTION (Updated with New Video) -->
+<!-- VIDEO SECTION (Custom Cover Image) -->
 <div class="mb-14 text-center bg-gray-900 rounded-lg shadow-lg p-4 sm:p-6">
-    <h3 class="text-white text-lg font-bold mb-4">Case Overview: 4-Minute Summary</h3>
+    <h3 class="text-white text-lg font-bold mb-4">Case Overview: 6-Minute Summary</h3>
     
-    <!-- Responsive Video Container -->
-    <div class="relative w-full pb-[56.25%] h-0 rounded-lg overflow-hidden bg-black border border-gray-700 shadow-md">
-      <!-- Standard Embed: Ensures 1-click play on all devices -->
-      <iframe 
-        class="absolute top-0 left-0 w-full h-full"
-        src="https://www.youtube.com/embed/BahrHxE4_Ho?rel=0&playsinline=1" 
-        title="Patterson v. USPS Case Summary"
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
+    <!-- 
+      Video Player Container:
+      Uses the "justice-cover.gif" you uploaded.
+      When clicked, it loads the 'nocookie' YouTube embed to bypass Error 153.
+    -->
+    <div class="relative w-full pb-[56.25%] h-0 rounded-lg overflow-hidden bg-black border border-gray-700 shadow-md group cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-400/60"
+         role="button"
+         tabindex="0"
+         aria-label="Play the case overview video"
+         onclick="this.innerHTML='<iframe class=\'absolute top-0 left-0 w-full h-full\' src=\'https://www.youtube-nocookie.com/embed/BahrHxE4_Ho?autoplay=1&playsinline=1\' title=\'Patterson v. USPS Case Summary\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen></iframe>'"
+         onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); this.click(); }">
+      
+      <!-- YOUR CUSTOM IMAGE -->
+      <img src="justice-cover.gif" 
+           alt="My Fight For Justice - Video Cover" 
+           loading="lazy"
+           class="absolute top-0 left-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-300">
+      
+      <!-- Play Button (Bottom Right) -->
+      <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 pointer-events-none z-10">
+        <div class="bg-red-600 group-hover:bg-red-700 text-white rounded-full p-3 sm:p-4 shadow-2xl transform group-hover:scale-110 transition duration-300 flex items-center justify-center border-2 border-white">
+          <svg class="w-6 h-6 sm:w-8 sm:h-8 ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Text Hint -->
+      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition duration-300 text-left pl-6 pb-6">
+        Tap to Play
+      </div>
     </div>
+    
+    <!-- Noscript Fallback -->
+    <noscript>
+      <p class="text-white text-sm mt-4">
+        JavaScript is disabled. You can watch the video on
+        <a class="underline" href="https://www.youtube.com/watch?v=BahrHxE4_Ho" target="_blank" rel="noopener noreferrer">YouTube</a>.
+      </p>
+    </noscript>
 </div>
 
 <!-- LEGAL NARRATIVE -->
@@ -166,15 +196,8 @@
     <h3 class="text-xl font-bold text-gray-900 border-l-4 border-blue-600 pl-4 mb-3">Additional Allegations</h3>
     <p>The lawsuit also alleges that discriminatory or retaliatory statements were made relating to age, disability, and anticipated use of protected medical leave. These allegations are contested by the defendant.</p>
   </div>
-
-  <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
-    <h3 class="text-lg font-bold text-gray-900 mb-2">Procedural Status</h3>
-    <p class="text-sm">The case is pending before the United States District Court for the Central District of California. Motion practice and discovery are ongoing. No findings of fact or liability have been made by the Court.</p>
-  </div>
-
-  <div class="text-sm text-gray-500 italic border-t pt-6">
-    <strong>Purpose of This Page:</strong> This webpage is intended to provide members of the public, advocates, and potential supporters with a neutral, high-level overview of the nature of the case based on public filings. It does not attempt to resolve factual disputes or predict the outcome of the litigation.
-  </div>
+  
+  <!-- Removed Procedural Status & Purpose of This Page sections per user request -->
 
 </section>
 
@@ -263,8 +286,8 @@
         </a>
     </div>
 
-    <!-- Verification Section -->
-    <div class="max-w-xl mx-auto border-t border-gray-300 pt-6">
+    <!-- Verification Section (Moved above Disclaimer) -->
+    <div class="max-w-xl mx-auto border-t border-gray-300 pt-6 mb-8">
         <p class="text-xs text-gray-600 mb-3">Case verification and docket activity are available through PACER Monitor:</p>
         <a href="https://www.pacermonitor.com/public/case/58465402/Jeff_Patterson_v_United_States_Postal_Service_et_al" 
            target="_blank" rel="noopener noreferrer" 
@@ -272,6 +295,12 @@
            View PACER Monitor Docket
         </a>
     </div>
+
+    <!-- LEGAL DISCLAIMER (Moved to Bottom) -->
+    <aside class="bg-slate-100 border-l-4 border-slate-600 p-5 mb-12 rounded text-sm text-slate-700 shadow-sm leading-relaxed text-left">
+      <p class="font-bold mb-2 uppercase tracking-wide text-xs text-slate-500">Disclaimer</p>
+      <p>This webpage provides a public-facing summary of allegations and procedural history drawn from publicly filed court records and the plaintiff’s publicly stated allegations in <em>Patterson v. United States Postal Service</em>. The case is active and pending before the United States District Court. All claims are disputed and subject to judicial determination. Nothing on this page constitutes legal advice.</p>
+    </aside>
 </section>
 
 </div>
